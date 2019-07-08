@@ -29,8 +29,25 @@ db.connect(function (err) {
 });
 
 exports.getData = function (req, res, next) {
-    db.query('SELECT * FROM items', function (err, result) {
-        res.setHeader('Content-Type', 'application/json');
-        return res.json(result)
+    db.query('SELECT * FROM items', function (err, rows, fields) {
+        if(err){
+            throw err;
+        }
+        else {
+            res.setHeader('Content-Type', 'application/json');
+            return res.send(rows)
+        }
+    })
+};
+
+exports.getSpecificData = function (req, res, next) {
+    db.query('SELECT * FROM items WHERE id = ?', [req.params.id], function (err, rows, fields) {
+        if(err){
+            throw err;
+        }
+        else {
+            res.setHeader('Content-Type', 'application/json');
+            return res.send(rows)
+        }
     })
 };

@@ -9,12 +9,12 @@ router.get('/', function(req, res, next) {
 
 router.get('/rest/getAll', indexController.getData);
 
-router.get('/rest/get/:id', indexController);
+router.get('/rest/get/:id', indexController.getSpecificData);
 
-router.post('/rest/create', indexController);
+//router.post('/rest/create', indexController.postData);
 
-router.patch('/rest/update/:id', indexController);
+//router.patch('/rest/update/:id', indexController.updateData);
 
-router.delete('/rest/delete', indexController);
+//router.delete('/rest/delete/:id', indexController.deleteData);
 
 module.exports = router;
