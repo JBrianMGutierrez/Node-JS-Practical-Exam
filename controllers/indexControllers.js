@@ -28,22 +28,24 @@ db.connect(function (err) {
     }
 });
 
+//Get all data
 exports.getData = function (req, res, next) {
     db.query('SELECT * FROM items', function (err, rows, fields) {
         if(err){
-            throw err;
+            res.send({err});
         }
         else {
             res.setHeader('Content-Type', 'application/json');
-            return res.send(rows)
+            res.send(rows);
         }
     })
 };
 
+//Get specific data
 exports.getSpecificData = function (req, res, next) {
     db.query('SELECT * FROM items WHERE id = ?', [req.params.id], function (err, rows, fields) {
         if(err){
-            throw err;
+            res.send({err});
         }
         else {
             res.setHeader('Content-Type', 'application/json');
@@ -82,7 +84,20 @@ exports.deleteData = function (req, res, next) {
             throw err.message;
         }
         else {
+            res.setHeader('Content-Type', 'application/json');
             return res.send({message: 'Data Successfully Deleted!'})
         }
     })
+};
+
+
+exports.tblReadAllData = function (req, res, next) {
+    db.query('SELECT * FROM items', function (err, rows, fields) {
+        if(err){
+            res.send({err});
+        }
+        else {
+            res.render('table', { items: rows, title: 'Item Table' });
+        }
+    });
 };

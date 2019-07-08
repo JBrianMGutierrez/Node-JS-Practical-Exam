@@ -17,4 +17,6 @@ router.patch('/rest/update/:id', indexController.updateData);
 
 router.delete('/rest/delete/:id', indexController.deleteData);
 
+router.get('/crud/table', indexController.tblReadAllData);
+
 module.exports = router;

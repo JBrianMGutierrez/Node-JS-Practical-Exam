@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <button class="button round-button">Add new item</button></br></br>
+   <table id="items">
+     <tr>
+       <th class="row-ID">ID</th>
+       <th>Name</th>
+       <th>Quantity</th>
+       <th>Amount</th>
+     </tr>
+     <% for(let i=0; i<items.length; i++) {%>
+     <tr>
+         <td><%= items[i].id %></td>
+         <td><%= items[i].name %></td>
+         <td><%= items[i].qty %></td>
+         <td><%= items[i].amount %></td>
+     </tr>
+     <% } %>
+   </table>
+  </body>
+</html>
