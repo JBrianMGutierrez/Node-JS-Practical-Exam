@@ -109,7 +109,7 @@ exports.tblReadSpecificData = function (req, res, next) {
             res.send({err});
         }
         else {
-            res.render('item', {item: rows, title: 'Item Table' });
+            res.render('item', {item: rows[0], title: 'Item Table' });
         }
     })
 };
@@ -140,6 +140,17 @@ exports.tblUpdateData = function (req, res, next) {
     db.query('UPDATE items SET name = ? , qty = ? , amount = ? WHERE id = ?', [req.body.name, req.body.qty, req.body.amount, req.params.id], function (err, rows, fields) {
         if(err){
             return err;
+        }
+        else {
+            res.redirect('/crud/table')
+        }
+    })
+};
+
+exports.tblDeleteData = function (req, res, next) {
+    db.query('DELETE FROM items WHERE id = ?', [req.params.id], function (err, rows, fields) {
+        if (err){
+            throw err.message;
         }
         else {
             res.redirect('/crud/table')

@@ -1,13 +1,10 @@
 <link rel='stylesheet' href='/stylesheets/style.css' />
-<% for(let i=0; i<item.length; i++) {%>
-     <h1><%= item[i].name %></h1>
-     <h2><%= item[i].qty %> pcs.</h2>
-     <h2>PHP <%= item[i].amount %></h2>
-<% } %>
-
+<h1><%= item.name %></h1>
+<h2><%= item.qty %> pcs.</h2>
+<h2>PHP <%= item.amount %></h2>
 <button class="button round-button" onclick="goBack()">Back</button>
-<button class="button round-button">Edit</button>
-<button class="button round-button">Delete</button>
+<a href="../edit/<%= item.id %>"><button class="button round-button">Edit</button></a>
+<a href="../delete/<%= item.id %>"><button class="button round-button">Delete</button></a>
 
 <script>
 function goBack() {

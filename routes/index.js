@@ -31,6 +31,6 @@ router.get('/crud/edit/:id', indexController.tblEditData);
 
 router.post('/crud/edit/:id', indexController.tblUpdateData);
 
-router.delete('/crud/delete/:id', indexController.deleteData);
+router.get('/crud/delete/:id', indexController.tblDeleteData);
 
 module.exports = router;
