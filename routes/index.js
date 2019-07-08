@@ -4,7 +4,7 @@ let indexController = require('../controllers/indexControllers');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+    res.render('index', { title: 'Practical Exam CRUD table and RESTful API', link: '../crud/table' });
 });
 
 router.get('/rest/getAll', indexController.getData);
@@ -13,7 +13,7 @@ router.get('/rest/get/:id', indexController.getSpecificData);
 
 router.post('/rest/create', indexController.postData);
 
-router.patch('/rest/update/:id', indexController.updateData);
+router.put('/rest/update/:id', indexController.updateData);
 
 router.delete('/rest/delete/:id', indexController.deleteData);
 

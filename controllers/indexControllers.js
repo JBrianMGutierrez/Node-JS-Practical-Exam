@@ -6,25 +6,40 @@ let db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'inventory'
 });
 
-//MySQL Connection and Table Query if not yet existed
+
+
+//MySQL Connection! Database and Table are created if not yet existed
 db.connect(function (err) {
     if(err) {
         throw err;
     }
     else {
         console.log('MySQL Successfully Connected!');
-        let createItemTable = 'CREATE TABLE IF NOT EXISTS ITEMS(ID INT PRIMARY KEY AUTO_INCREMENT, NAME VARCHAR(255)NOT NULL, QTY INT NOT NULL DEFAULT 0, AMOUNT INT NOT NULL DEFAULT 0)';
-        db.query(createItemTable, function (err, results, fields) {
-            if(err) {
+        db.query('CREATE DATABASE IF NOT EXISTS inventory', function (err, results, fields) {
+            if(err){
                 throw err;
             }
             else {
-                console.log('Table Successfully Created!')
+                db.query('USE inventory', function (err, results, fields) {
+                    if(err){
+                        throw err;
+                    }
+                    else {
+                        let createItemTable = 'CREATE TABLE IF NOT EXISTS items(id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(255)NOT NULL, qty INT NOT NULL DEFAULT 0, amount INT NOT NULL DEFAULT 0)';
+                        db.query(createItemTable, function (err, results, fields) {
+                            if(err) {
+                                throw err;
+                            }
+                            else {
+                                console.log('Table Successfully Created!')
+                            }
+                        })
+                    }
+                });
             }
-        })
+        });
     }
 });
 
@@ -67,9 +82,9 @@ exports.postData = function (req, res, next) {
 };
 
 exports.updateData = function (req, res, next) {
-    db.query('UPDATE items SET name = ? , qty = ? , amount = ? WHERE id = ?', [req.body.name, req.body.qty, req.body.amount, req.params.id], function (err, rows, fields) {
+    db.query(`UPDATE items SET name = IFNULL(? , name), qty = IFNULL(? , qty) , amount = IFNULL(? , amount) WHERE id = ?`, [req.body.name, req.body.qty, req.body.amount, req.params.id], function (err, rows, fields) {
         if(err){
-            return err;
+            throw err;
         }
         else {
             res.setHeader('Content-Type', 'application/json');
@@ -79,7 +94,7 @@ exports.updateData = function (req, res, next) {
 };
 
 exports.deleteData = function (req, res, next) {
-    db.query('DELETE FROM items WHERE id = ?', [req.params.id], function (err, res, fields) {
+    db.query('DELETE FROM items WHERE id = ?', [req.params.id], function (err, row, fields) {
         if (err){
             throw err.message;
         }
@@ -139,9 +154,10 @@ exports.tblEditData = function (req, res, next) {
 exports.tblUpdateData = function (req, res, next) {
     db.query('UPDATE items SET name = ? , qty = ? , amount = ? WHERE id = ?', [req.body.name, req.body.qty, req.body.amount, req.params.id], function (err, rows, fields) {
         if(err){
-            return err;
+            throw err;
         }
         else {
+            console.log("wat");
             res.redirect('/crud/table')
         }
     })
