@@ -63,3 +63,16 @@ exports.postData = function (req, res, next) {
         }
     })
 };
+
+exports.updateData = function (req, res, next) {
+    db.query('UPDATE items SET name = ? , qty = ? , amount = ? WHERE id = ?', [req.body.name, req.body.qty, req.body.amount, req.params.id], function (err, rows, fields) {
+        if(err){
+            return err;
+        }
+        else {
+            res.setHeader('Content-Type', 'application/json');
+            return res.send({message: 'Data Successfully Updated!'})
+        }
+    })
+};
+

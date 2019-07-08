@@ -13,7 +13,7 @@ router.get('/rest/get/:id', indexController.getSpecificData);
 
 router.post('/rest/create', indexController.postData);
 
-//router.patch('/rest/update/:id', indexController.updateData);
+router.patch('/rest/update/:id', indexController.updateData);
 
 //router.delete('/rest/delete/:id', indexController.deleteData);
 
