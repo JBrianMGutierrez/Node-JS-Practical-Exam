@@ -16,7 +16,7 @@
      <% for(let i=0; i<items.length; i++) {%>
      <tr>
          <td><%= items[i].id %></td>
-         <td><%= items[i].name %></td>
+         <td><a href="../crud/get/<%= items[i].id %>"><%= items[i].name %></a></td>
          <td><%= items[i].qty %></td>
          <td><%= items[i].amount %></td>
      </tr>

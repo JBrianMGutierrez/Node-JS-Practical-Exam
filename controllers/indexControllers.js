@@ -101,3 +101,15 @@ exports.tblReadAllData = function (req, res, next) {
         }
     });
 };
+
+
+exports.tblReadSpecificData = function (req, res, next) {
+    db.query('SELECT * FROM items WHERE id = ?', [req.params.id], function (err, rows, fields) {
+        if(err){
+            res.send({err});
+        }
+        else {
+            res.render('item', {item: rows, title: 'Item Table' });
+        }
+    })
+};

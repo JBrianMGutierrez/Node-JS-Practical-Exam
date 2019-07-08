@@ -19,4 +19,6 @@ router.delete('/rest/delete/:id', indexController.deleteData);
 
 router.get('/crud/table', indexController.tblReadAllData);
 
+router.get('/crud/get/:id', indexController.tblReadSpecificData);
+
 module.exports = router;
