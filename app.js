@@ -1,6 +1,6 @@
 let express = require('express');
 let path = require('path');
-let mysql = require('mysql');
+let bodyParser = require("body-parser");
 
 let app = express();
 let indexRouter = require('./routes/index');
@@ -11,7 +11,9 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Routes Path

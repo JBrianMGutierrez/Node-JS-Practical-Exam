@@ -21,4 +21,11 @@ router.get('/crud/table', indexController.tblReadAllData);
 
 router.get('/crud/get/:id', indexController.tblReadSpecificData);
 
+router.get('/crud/add', function (res, req, next) {
+    req.render('add', {title: 'POST Data'})
+});
+
+router.post('/crud/add', indexController.tblPostData);
+
+
 module.exports = router;

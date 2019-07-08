@@ -113,3 +113,14 @@ exports.tblReadSpecificData = function (req, res, next) {
         }
     })
 };
+
+exports.tblPostData = function (req, res, next) {
+    db.query('INSERT INTO items(name, qty, amount) VALUES(?, ?, ?)', [req.body.name, req.body.qty, req.body.amount], function (err, rows, fields) {
+        if(err){
+            throw err;
+        }
+        else {
+            res.redirect('/crud/table')
+        }
+    })
+};
