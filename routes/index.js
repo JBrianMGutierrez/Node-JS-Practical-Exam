@@ -11,7 +11,7 @@ router.get('/rest/getAll', indexController.getData);
 
 router.get('/rest/get/:id', indexController.getSpecificData);
 
-//router.post('/rest/create', indexController.postData);
+router.post('/rest/create', indexController.postData);
 
 //router.patch('/rest/update/:id', indexController.updateData);
 

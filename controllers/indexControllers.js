@@ -51,3 +51,15 @@ exports.getSpecificData = function (req, res, next) {
         }
     })
 };
+
+exports.postData = function (req, res, next) {
+    db.query('INSERT INTO items(name, qty, amount) VALUES(?, ?, ?)', [req.body.name, req.body.qty, req.body.amount], function (err, rows, fields) {
+        if(err){
+            throw err;
+        }
+        else {
+            res.setHeader('Content-Type', 'application/json');
+            return res.send({message: 'Data Successfully Saved!'})
+        }
+    })
+};
