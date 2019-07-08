@@ -1,0 +1,20 @@
+{
+  "name": "Node-JS-Practical-Exam",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JBrianMGutierrez/Node-JS-Practical-Exam.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JBrianMGutierrez/Node-JS-Practical-Exam/issues"
+  },
+  "homepage": "https://github.com/JBrianMGutierrez/Node-JS-Practical-Exam#readme"
+}
