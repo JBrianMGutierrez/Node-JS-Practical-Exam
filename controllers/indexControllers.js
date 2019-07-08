@@ -124,3 +124,26 @@ exports.tblPostData = function (req, res, next) {
         }
     })
 };
+
+exports.tblEditData = function (req, res, next) {
+    db.query('SELECT * FROM items WHERE id = ?', [req.params.id], function (err, rows, fields) {
+        if(err){
+            res.send({err});
+        }
+        else {
+            res.render('edit', {item: rows[0]})
+        }
+    })
+};
+
+exports.tblUpdateData = function (req, res, next) {
+    db.query('UPDATE items SET name = ? , qty = ? , amount = ? WHERE id = ?', [req.body.name, req.body.qty, req.body.amount, req.params.id], function (err, rows, fields) {
+        if(err){
+            return err;
+        }
+        else {
+            res.redirect('/crud/table')
+        }
+    })
+};
+

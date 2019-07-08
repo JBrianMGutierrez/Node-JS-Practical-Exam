@@ -27,5 +27,10 @@ router.get('/crud/add', function (res, req, next) {
 
 router.post('/crud/add', indexController.tblPostData);
 
+router.get('/crud/edit/:id', indexController.tblEditData);
+
+router.post('/crud/edit/:id', indexController.tblUpdateData);
+
+router.delete('/crud/delete/:id', indexController.deleteData);
 
 module.exports = router;
