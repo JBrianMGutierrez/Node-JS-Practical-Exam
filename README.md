@@ -18,3 +18,9 @@ CRUD Table Routes (Browser URL)
 ../crud/table
 
 ../crud/get/:id
+
+../crud/edit/:id
+
+../crud/add
+
+../crud/delete/:id
