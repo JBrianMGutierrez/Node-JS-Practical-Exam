@@ -10,25 +10,15 @@ let PORT = '3000';
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-let db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'inventory'
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-db.connect(function (err) {
-    if(err) {
-        throw err;
-    }
-    else {
-        console.log('MySQL Successfully Connected!')
-    }
-});
-
+//Routes Path
 app.use('/', indexRouter);
 
+//Test Server
 app.listen(PORT, function () {
     console.log(`Server started on port ${PORT}`)
 });
 
+module.exports = app;
