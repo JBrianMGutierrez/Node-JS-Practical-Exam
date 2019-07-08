@@ -76,3 +76,13 @@ exports.updateData = function (req, res, next) {
     })
 };
 
+exports.deleteData = function (req, res, next) {
+    db.query('DELETE FROM items WHERE id = ?', [req.params.id], function (err, res, fields) {
+        if (err){
+            throw err.message;
+        }
+        else {
+            return res.send({message: 'Data Successfully Deleted!'})
+        }
+    })
+};

@@ -15,6 +15,6 @@ router.post('/rest/create', indexController.postData);
 
 router.patch('/rest/update/:id', indexController.updateData);
 
-//router.delete('/rest/delete/:id', indexController.deleteData);
+router.delete('/rest/delete/:id', indexController.deleteData);
 
 module.exports = router;
